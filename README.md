@@ -39,28 +39,27 @@ New messages are appended to the folder's mbox file.
 
 ## Example
 
-$ python imapbackup.py -s shevek.tamale.net -u michael -e -f INBOX
-Password:
-Connecting to 'shevek.tamale.net' TCP port 993, SSL
-Logging in as 'michael'
-Finding Folders: 67 folders
-Folder INBOX: 1231 messages
-File INBOX.mbox /
-WARNING: Message #117 in INBOX.mbox has a malformed Message-Id header.
-File INBOX.mbox -
-WARNING: Message #269 in INBOX.mbox has a malformed Message-Id header.
-File INBOX.mbox -
-WARNING: Message #498 in INBOX.mbox has a malformed Message-Id header.
-File INBOX.mbox /
-WARNING: Message #609 in INBOX.mbox has a malformed Message-Id header.
-File INBOX.mbox |
-WARNING: Message #976 in INBOX.mbox has a malformed Message-Id header.
-File INBOX.mbox -
-WARNING: Message #1042 in INBOX.mbox has a malformed Message-Id header.
-File INBOX.mbox: 1230 messages
-Downloading 1 new messages to INBOX.mbox: 1.89 KB total, 1.89 KB for largest message
-Disconnecting
-$
+    $ python imapbackup.py -s shevek.tamale.net -u michael -e -f INBOX
+    Password:
+    Connecting to 'shevek.tamale.net' TCP port 993, SSL
+    Logging in as 'michael'
+    Finding Folders: 67 folders
+    Folder INBOX: 1231 messages
+    File INBOX.mbox /
+    WARNING: Message #117 in INBOX.mbox has a malformed Message-Id header.
+    File INBOX.mbox -
+    WARNING: Message #269 in INBOX.mbox has a malformed Message-Id header.
+    File INBOX.mbox -
+    WARNING: Message #498 in INBOX.mbox has a malformed Message-Id header.
+    File INBOX.mbox /
+    WARNING: Message #609 in INBOX.mbox has a malformed Message-Id header.
+    File INBOX.mbox |
+    WARNING: Message #976 in INBOX.mbox has a malformed Message-Id header.
+    File INBOX.mbox -
+    WARNING: Message #1042 in INBOX.mbox has a malformed Message-Id header.
+    File INBOX.mbox: 1230 messages
+    Downloading 1 new messages to INBOX.mbox: 1.89 KB total, 1.89 KB for largest message
+    Disconnecting
 
 
 ## Changelog
@@ -78,11 +77,11 @@ $
   * Cleaned up code. Used pylint to find code that didn't comply with best practices.
 - **2007-05-27 v1.3b**
   * Fixed bug in error message printout.
-- **2007-05-26 v1.3a
+- **2007-05-26 v1.3a**
   * Better support for result of LIST command. Fixes the problem of some folders not getting backed up from Courier IMAPd
   * Improved usage printout, made parameters more consistent.
   * Added support for socket._fileobject.recv bugfix on Windows
-- **2007-03-27 v1.2e
+- **2007-03-27 v1.2e**
   * By Rui Carmo.  Downloaded from:
     http://the.taoofmac.com/space/Projects/imapbackup
     http://web.archive.org/web/20071011040436/http://the.taoofmac.com/space/Projects/imapbackup
