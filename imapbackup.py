@@ -44,7 +44,6 @@ import os
 import gc
 import sys
 import time
-import platform
 import getopt
 import mailbox
 import imaplib
@@ -625,59 +624,6 @@ def cli_exception(typ, value, traceback):
 
 if sys.stdin.isatty():
     sys.excepthook = cli_exception
-
-
-# Hideous fix to counteract http://python.org/sf/1092502
-# (which should have been fixed ages ago.)
-# Also see http://python.org/sf/1441530
-def _fixed_socket_read(self, size=-1):
-    data = self._rbuf
-    if size < 0:
-        # Read until EOF
-        buffers = []
-        if data:
-            buffers.append(data)
-        self._rbuf = ""
-        if self._rbufsize <= 1:
-            recv_size = self.default_bufsize
-        else:
-            recv_size = self._rbufsize
-        while True:
-            data = self._sock.recv(recv_size)
-            if not data:
-                break
-            buffers.append(data)
-        return "".join(buffers)
-    else:
-        # Read until size bytes or EOF seen, whichever comes first
-        buf_len = len(data)
-        if buf_len >= size:
-            self._rbuf = data[size:]
-            return data[:size]
-        buffers = []
-        if data:
-            buffers.append(data)
-        self._rbuf = ""
-        while True:
-            left = size - buf_len
-            recv_size = min(self._rbufsize, left)  # the actual fix
-            data = self._sock.recv(recv_size)
-            if not data:
-                break
-            buffers.append(data)
-            n = len(data)
-            if n >= left:
-                self._rbuf = data[left:]
-                buffers[-1] = data[:left]
-                break
-            buf_len += n
-        return "".join(buffers)
-
-# Platform detection to enable socket patch
-if 'Darwin' in platform.platform() and '2.3.5' == platform.python_version():
-    socket._fileobject.read = _fixed_socket_read
-if 'Windows' in platform.platform():
-    socket._fileobject.read = _fixed_socket_read
 
 if __name__ == '__main__':
     gc.enable()
